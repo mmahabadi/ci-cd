@@ -19,9 +19,4 @@ def healthz():
     }), 200
 
 if __name__ == '__main__':
-    app.run()
-
-
-  
-# '/api/v1/details'
-# '/api/v1/healthz'
+    app.run(host="0.0.0.0")
