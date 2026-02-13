@@ -11,7 +11,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Set short SHA
+      - name: Shorten commit id
         run: echo "COMMITID=${GITHUB_SHA::6}" >> $GITHUB_ENV
       -
         name: Login to Docker Hub
