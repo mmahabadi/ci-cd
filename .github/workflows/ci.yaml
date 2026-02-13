@@ -22,4 +22,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: docker.io/mehabadi/test:cicd-app-${GITHUB_SHA::6}
+          tags: docker.io/mehabadi/test:cicd-app-${{ github.sha }}
