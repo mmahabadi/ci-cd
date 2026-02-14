@@ -11,7 +11,7 @@ def details():
         "hostname": socket.gethostname(),
         "ip": socket.gethostbyname(socket.gethostname()),
         "status": "up",
-        "message": "You are doing great! :)"
+        "message": "You are doing great!"
     })
 
 @app.route("/api/v1/healthz")
