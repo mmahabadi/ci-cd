@@ -1,4 +1,4 @@
-name: ci
+name: cicd
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  docker:
-    runs-on: self-hosted
+  ci:
+    runs-on: ubuntu-latest
     steps:
       - name: Shorten commit id
         run: echo "COMMITID=${GITHUB_SHA::6}" >> $GITHUB_ENV
@@ -25,3 +25,15 @@ jobs:
         with:
           push: true
           tags: docker.io/mehabadi/test:cicd-app-${{ env.COMMITID }}
+  cd:
+    needs: ci
+    runs-on: self-hosted
+    steps:
+      - name: ArgoCD app sync
+        run: | 
+          argocd login argocd-server.argocd \
+          --insecure \
+          --username admin \
+          --password ${{ secrets.ARGOCD_PASSWORD }}
+      - name: ArgoCD sync app
+        run: argocd 
