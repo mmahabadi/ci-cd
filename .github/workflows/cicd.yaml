@@ -42,4 +42,4 @@ jobs:
           --username admin \
           --password ${{ secrets.ARGOCD_PASSWORD }}
       - name: ArgoCD sync app
-        run: argocd 
+        run: argocd app sync python-app
