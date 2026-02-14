@@ -24,6 +24,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: docker.io/mehabadi/test:cicd-app-${{ env.COMMITID }}
     outputs: 
       commit_id: ${{ env.COMMITID }}
