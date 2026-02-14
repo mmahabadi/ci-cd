@@ -41,7 +41,7 @@ jobs:
         
       - name: Modify values file
         run: |
-          yq -Yi `.image.tag = "cicd-app-${{needs.ci.outputs.commit_id}}"` charts/python-app/values.yaml
+          yq -i '.image.tag = "cicd-app-${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
       - name: Commit values changes
         uses: EndBug/add-and-commit@v9
         with: 
