@@ -25,10 +25,29 @@ jobs:
         with:
           push: true
           tags: docker.io/mehabadi/test:cicd-app-${{ env.COMMITID }}
+    outputs: 
+      commit_id: ${{ env.COMMITID }}
   cd:
     needs: ci
     runs-on: self-hosted
     steps:
+      - name: Install pip and yq
+        run: |
+          sudo apt-get update
+          sudo apt install python3-pip
+          pip install yq
+      
+      - name: Clone the repo
+        uses: actions/checkout@v3
+        
+      - name: Modify values file
+        run: |
+          yq -Yi `.image.tag = "test:cicd-app-${{needs.ci.outputs.commit_id}}"` charts/python-app/values.yaml
+      - name: Commit values changes
+        uses: EndBug/add-and-commit@v9
+        with: 
+          message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
+      
       - name: Install Argo CLI
         run: |
           curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
