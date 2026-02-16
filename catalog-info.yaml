@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cicd-python-app
+  description: A simple app to test CI-CD and Backstage.
+  annotations:
+    github.com/project-slug: mmahabadi/ci-cd
+  #   backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  owner: development
+  lifecycle: experimental
