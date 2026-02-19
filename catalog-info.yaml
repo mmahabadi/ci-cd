@@ -5,7 +5,7 @@ metadata:
   description: A simple app to test CI-CD and Backstage.
   annotations:
     github.com/project-slug: mmahabadi/ci-cd
-  #   backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: development
